@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+
+        <!-- My Stylesheet -->
+        <link rel="stylesheet" href="../static/css/sign-in.css">
+
+        <!-- Google Fonts Merriweather-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <!-- Google Fonts Roboto -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+        <!-- Fontawesome kit -->
+        <script src="https://kit.fontawesome.com/4b92c18dda.js" crossorigin="anonymous"></script>
+
+        <style>
+            {% if "ID" in err or "Password" in err: %}
+               .main-div {
+                   padding: 25px 80px 115px;
+               }
+            {% endif %}
+
+            {% if "ID" in err: %}
+               label[for="id_number"] {
+                   color: rgb(255, 0, 0);
+               }
+
+               #id_number {
+                 border: 2px solid rgb(255, 0, 0);
+                 height: 34px;
+               }
+
+            {% elif "Password" in err: %}
+               label[for="password"] {
+                   color: rgb(255, 0, 0);
+               }
+
+               #password {
+                 border: 2px solid rgb(255, 0, 0);
+                 height: 34px;
+               }
+            {% endif %}
+        </style>
+    </head>
+
+    <body>
+        <div class="main-div c-white">
+            {% if "Password" in err or "ID" in err: %}
+                <h2 style="color: rgb(255, 0, 0); text-align: center; font-size: 25px; margin: 0">{{ err.replace("*", " ") }}</h2>
+            {% endif %}
+            <div class="image-div">
+                <img src="https://cdn-icons-png.flaticon.com/512/5931/5931366.png" class="logo">
+            </div>
+            <div class="text-form flex j-center">
+                <div class="text">
+                    <h1 class="main-h">Welcome Back!</h1>
+                    <hr>
+                    <p class="main-p">
+                        Join our community and make your voice heard! Sign in to vote on important issues, participate in surveys, and engage with other members. Your opinion matters!
+                    </p>
+                    <a href="#" class="main-a">
+                        <button class="main-but c-white b-color">Learn More</button>
+                    </a>
+                    <p class="alt-text">
+                        Don't have an account yet?
+                        <a class="sign-up-a" href="{{ url_for('sign_up', err='noerror') }}">Sign Up</a>
+                    </p>
+                </div>
+                <div class="form-div">
+                    <h2 class="form-h c-white">
+                        Sign
+                        <span>in</span>
+                    </h2>
+                    <form method="POST">
+                        <div class="form-group">
+                            <label for="id_number" class="c-white">ID Number</label>
+                            <input class="field block h-36 b-none b-rad-20" type="text" name="id_number" id="id_number" placeholder="ID Number" minlength="13" maxlength="13" title="Please enter 13 numbers." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="c-white">Password</label>
+                            <input class="field block h-36 b-none b-rad-20" type="password" name="password" id="password" placeholder="Password" minlength="7" maxlength="7" required>
+                        </div>
+                        <button class="h-36 b-none c-white b-color b-rad-20" id="submit" type="submit">Submit</button>
+                        <div class="socials flex j-center">
+                            <i class="fa-brands fa-facebook-f c-white"></i>
+                            <i class="fa-brands fa-instagram c-white"></i>
+                            <i class="fa-brands fa-pinterest-p c-white"></i>
+                        </div>
+                    </form>
+                    <p class="alt-form">
+                        Don't have an account yet?
+                        <a class="sign-up-a" href="{{ url_for('sign_up', err='noerror') }}">Sign Up</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

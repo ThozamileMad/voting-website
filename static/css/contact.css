@@ -1,0 +1,210 @@
+body {
+  margin: 0;
+}
+
+.ff-roboto {
+  font-family: "Roboto", serif;
+}
+
+.flex {
+  display: flex;
+}
+
+.j-center {
+  justify-content: center;
+}
+
+#top-s, #submit {
+  color: white;
+}
+
+#top-s {
+  /* background-color: rgba(0, 103, 105, 0.8) */;
+  text-align: center;
+  padding: 40px 0 50px;
+  background-image: url("../images/contact(1).jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.main-h {
+  margin: 0 0 40px 0;
+  font-size: 45px;
+  font-weight: 900;
+}
+
+.all-contact-info-div {
+  column-gap: 120px;
+}
+
+.icon-div i {
+  font-size: 40px;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  border-radius: 50px;
+}
+
+.fa-solid.fa-location-dot {
+  padding: 20px 26px;
+}
+
+.sub-h {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.sub-info-div {
+  margin-bottom: 45px;
+}
+
+#bottom-s {
+  padding: 100px;
+  column-gap: 40px;
+}
+
+.smaller-h {
+  margin-top: 0;
+  color: #124076;
+  font-size: 40px;
+}
+
+.message-us {
+  color: #747264;
+  width: 608px;
+}
+
+.message-us p {
+  color: #747264;
+  font-size: 19px;
+}
+
+.pr-header {
+  font-size: 22px;
+  margin: 0;
+}
+
+.icon-description {
+  margin-top: 7px;
+}
+
+.message-us i, .description-h {
+  height: 122px;
+}
+
+.message-us i {
+  font-size: 55px;
+  border-right: 3.5px solid;
+  padding-right: 6px;
+  margin-right: 8px;
+}
+
+form {
+  width: 500px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.b-rad {
+  border-radius: 5px;
+}
+
+.border {
+  border: 1.8px solid black;
+}
+
+#name, #email, textarea {
+  font-size: 16px;
+  padding-left: 7px;
+  margin-top: 4px;
+}
+
+#name, #email {
+  height: 35px;
+}
+
+label {
+  font-size: 18px;
+}
+
+textarea {
+  height: 150px;
+  padding-top: 8px;
+}
+
+.form-group:not(.form-group:last-of-type) {
+  margin-bottom: 25px;
+}
+
+.form-group:last-of-type {
+  margin-bottom: 30px;
+}
+
+#submit {
+  border: none;
+  background-color: #124076;
+  width: 80px;
+  height: 35px;
+  cursor: pointer;
+}
+
+#submit:hover, #submit:active {
+  background-color: black;
+}
+
+.fa-solid.fa-hourglass.smaller-i {
+  display: none;
+  border: none;
+  font-size:
+}
+
+@media (max-width: 1000px) {
+  .main-h {
+    font-size: 37px;
+  }
+
+  .all-contact-info-div {
+    flex-direction: column;
+  }
+
+  #bottom-s {
+    flex-direction: column;
+    padding: 40px;
+  }
+
+  .message-us {
+    width: 100%;
+    text-align: center;
+
+  }
+
+  .message-us p {
+    margin-bottom: 30px;
+  }
+
+  .message-us i {
+    display: none;
+  }
+
+  .fa-solid.fa-hourglass.smaller-i {
+    display: inline;
+    font-size: 25px;
+    padding: 0 2px;
+  }
+
+  .pr-header {
+    margin-bottom: 13px;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  .description-h {
+    height: auto;
+  }
+
+
+}
