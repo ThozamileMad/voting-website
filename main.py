@@ -3,8 +3,10 @@ from flask_login import UserMixin, login_user, LoginManager, current_user, logou
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 from databases import sqlalchemy_app, web_databases
-from country_data import COUNTRIES, PROVINCES, LANGUAGES, POLITICAL_PARTIES
+from country_data import COUNTRIES, PROVINCES, LANGUAGES, POLITICAL_PARTIES, POLITICAL_PARTY_IMAGE_PATH, PARTY_DESCRIPTIONS, PARTY_COLORS
 from error_handler import ErrorHandler
+from blockchain import *
+from graphs import ResultsChart
 
 
 app = Flask(__name__)
@@ -61,7 +63,6 @@ def db_add(item):
 
 
 @app.route("/register/<err>", methods=["GET", "POST"])
-@restrict_page_if_not_logged_in
 def register(err):
     err_han = ErrorHandler()
     numbers_symbols = err_han.num_sym_lst
@@ -139,7 +140,7 @@ def register(err):
                              gender=gender,
                              married=married))
 
-        return redirect(url_for("home"))
+        return redirect(url_for("vote"))
 
     return render_template("register.html",
                            err=err,
@@ -202,7 +203,8 @@ def sign_up(err):
                      id_number=id_number,
                      email=email,
                      password=hashed_password,
-                     tsandcs=True))
+                     tsandcs=True,
+                     party_vote=""))
 
         login_user(Users.query.filter_by(email=email).first())
         return redirect(url_for("home"))
@@ -236,6 +238,52 @@ def sign_in(err):
 @app.route("/contact", methods=["POST", "GET"])
 def contact():
     return render_template("contact.html")
+
+
+@app.route("/vote", methods=["GET", "POST"])
+def vote():
+    modified_political_party = [party_name.lower() for party_name in POLITICAL_PARTIES]
+    if request.method == "POST":
+        user_input = "".join([request.form.get(party) for party in modified_political_party if request.form.get(party) != None])
+        user_id = current_user.get_id()
+        user_db_data = Users.query.filter_by(id=user_id).first()
+        user_name = user_db_data.name
+        user_surname = user_db_data.surname
+        user_id_number = user_db_data.id_number
+        
+        blc_user_class = User(user_name, user_surname, user_id_number)
+        blc_user_vote_information_class = User_vote_information(blc_user_class, user_input)
+        blc_user_voteblock_class = VoteBlock("Initialiser", user_vote_information=blc_user_vote_information_class)
+
+        # add party name to database
+        user_db_data.party_vote = user_input
+        db.session.commit()
+
+        return redirect(url_for("home"))
+    
+    return render_template("vote.html",
+                           party_names=modified_political_party,
+                           party_img_path=POLITICAL_PARTY_IMAGE_PATH,
+                           party_descriptions=PARTY_DESCRIPTIONS,
+                           party_colors=PARTY_COLORS)
+
+
+@app.route("/results")
+def results():
+    vote_data = [data.party_vote for data in db.session.query(Users).all()]
+    vote_stats = {party.lower(): 0 for party in POLITICAL_PARTIES}
+
+    for (k, v) in vote_stats.items():
+        if k in vote_data:
+            vote_stats[k] = vote_data.count(k)
+
+    modified_political_parties = ["".join(party.title().split()[:-1]) + party.split()[-1].upper() for party in POLITICAL_PARTIES][::-1]
+    modified_vote_stats = [vote_stats[key] for key in vote_stats][::-1]
+
+    chart_cls = ResultsChart(modified_political_parties, modified_vote_stats, PARTY_COLORS[::-1])
+    chart_cls.make_bar_chart()
+
+    return render_template("results.html")
 
 
 @app.route("/logout")
