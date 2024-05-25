@@ -3,7 +3,7 @@ from flask_login import UserMixin, login_user, LoginManager, current_user, logou
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 from databases import sqlalchemy_app, web_databases
-from country_data import COUNTRIES, PROVINCES, LANGUAGES, POLITICAL_PARTIES, POLITICAL_PARTY_IMAGE_PATH, PARTY_DESCRIPTIONS, PARTY_COLORS
+from country_data import COUNTRIES, PROVINCES, LANGUAGES, POLITICAL_PARTIES, POLITICAL_PARTY_IMAGE_PATH, PARTY_DESCRIPTIONS, PARTY_COLORS, STATS_DESCRIPTIONS
 from error_handler import ErrorHandler
 from blockchain import *
 from graphs import ResultsChart
@@ -277,13 +277,20 @@ def results():
         if k in vote_data:
             vote_stats[k] = vote_data.count(k)
 
-    modified_political_parties = ["".join(party.title().split()[:-1]) + party.split()[-1].upper() for party in POLITICAL_PARTIES][::-1]
     modified_vote_stats = [vote_stats[key] for key in vote_stats][::-1]
 
-    chart_cls = ResultsChart(modified_political_parties, modified_vote_stats, PARTY_COLORS[::-1])
+    chart_cls = ResultsChart(POLITICAL_PARTIES[::-1], modified_vote_stats, PARTY_COLORS[::-1])
     chart_cls.make_bar_chart()
+    chart_cls.make_pie_charts()
 
-    return render_template("results.html")
+    pie_charts = [img_path.split()[-1].lower() for img_path in POLITICAL_PARTIES]
+    stats_des = [STATS_DESCRIPTIONS[num].replace("[insert percentage]", str(round(chart_cls.percentages[num], 2))) for num in range(len(STATS_DESCRIPTIONS))]
+
+    return render_template("results.html",
+                           parties=POLITICAL_PARTIES,
+                           pie_charts=pie_charts,
+                           stats_des=stats_des,
+                           colors=PARTY_COLORS)
 
 
 @app.route("/logout")

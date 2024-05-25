@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 
@@ -6,6 +8,9 @@ class ResultsChart:
         self.parties = parties
         self.vote_calcs = vote_calcs
         self.colors = colors
+        self.percentages = 0
+        plt.rcParams['font.family'] = 'sans-serif'
+        plt.rcParams['font.sans-serif'] = 'Roboto'
 
     def make_bar_chart(self):
         # Create horizontal bar chart
@@ -31,3 +36,33 @@ class ResultsChart:
         # save to static/images
         fig.savefig("./static/images/bar_chart.jpeg", bbox_inches='tight')
 
+    def make_pie_charts(self):
+        # Calculate percentages
+        total_votes = sum(self.vote_calcs)
+        percentages = [vote / total_votes for vote in self.vote_calcs]
+        self.percentages = percentages[::-1]
+
+        # Generate and save a chart for each party
+        for i, (party, percentage) in enumerate(zip(self.parties, percentages)):
+            # Create a figure and axis
+            fig, ax = plt.subplots(subplot_kw={'aspect': 'equal'})
+
+            # Create a pie chart with a single wedge
+            ax.pie([percentage, 1 - percentage], colors=[self.colors[i], 'white'], startangle=90, wedgeprops=dict(width=0.3))
+
+            # Add a filled circle in the center with a thinner width
+            centre_circle = plt.Circle((0, 0), 0.25, fc='white')
+            ax.add_artist(centre_circle)
+
+            # Add the percentage in the center with bigger and bolder font
+            ax.text(0, 0, f'{percentage * 100:.1f}%', horizontalalignment='center', verticalalignment='center',
+                    fontsize=32, fontweight='bold')
+
+            # Equal aspect ratio ensures that pie is drawn as a circle
+            ax.axis('equal')
+
+            # Save each pie chart as an image with transparent background
+            plt.savefig(f'./static/images/{party.split()[-1].lower()}_pie_chart.jpeg', transparent=True)
+
+            # Close the figure to avoid displaying it
+            plt.close(fig)
