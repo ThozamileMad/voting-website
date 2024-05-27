@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+
+        <!-- My Stylesheet -->
+        <link rel="stylesheet" href="../static/css/register.css">
+
+        <!-- Google Fonts Merriweather-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <!-- Google Fonts Roboto -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+        <!-- Fontawesome kit -->
+        <script src="https://kit.fontawesome.com/4b92c18dda.js" crossorigin="anonymous"></script>
+        <style>
+            {% if "ID" in err: %}
+                #id_number {
+                  border-color: red;
+                }
+
+                #id_number::placeholder {
+                  color: red;
+                  opacity: 1; /* Firefox */
+                }
+
+                #id_number::-ms-input-placeholder { /* Edge 12 -18 */
+                  color: red;
+                }
+
+            {% endif %}
+
+            {% if "First" in err: %}
+                #name {
+                  border-color: red;
+                }
+
+                #name::placeholder {
+                  color: red;
+                  opacity: 1; /* Firefox */
+                }
+
+                #name::-ms-input-placeholder { /* Edge 12 -18 */
+                  color: red;
+                }
+            {% endif %}
+
+            {% if "Last" in err: %}
+                #surname {
+                  border-color: red;
+                }
+
+                #surname::placeholder {
+                  color: red;
+                  opacity: 1; /* Firefox */
+                }
+
+                #surname::-ms-input-placeholder { /* Edge 12 -18 */
+                  color: red;
+                }
+            {% endif %}
+
+            {% if "Date" in err or "Young" in err: %}
+                #date {
+                  color: red;
+                  border-color: red;
+                }
+
+                #date::placeholder {
+                  color: red;
+                  opacity: 1; /* Firefox */
+                }
+
+                #date::-ms-input-placeholder { /* Edge 12 -18 */
+                  color: red;
+                }
+            {% endif %}
+
+            {% if "Invalid*Address!!!" == err: %}
+                #address {
+                  border-color: red;
+                }
+
+                #address::placeholder {
+                  color: red;
+                  opacity: 1; /* Firefox */
+                }
+
+                #address::-ms-input-placeholder { /* Edge 12 -18 */
+                  color: red;
+                }
+            {% endif %}
+
+            {% if "Contact" in err: %}
+                #contact_numbers {
+                  border-color: red;
+                }
+
+                #contact_numbers::placeholder {
+                  color: red;
+                  opacity: 1; /* Firefox */
+                }
+
+                #contact_numbers::-ms-input-placeholder { /* Edge 12 -18 */
+                  color: red;
+                }
+            {% endif %}
+
+            {% if "Proof" in err: %}
+                #proof_of_address {
+                  border-color: red;
+                }
+
+                #proof_of_address::placeholder {
+                  color: red;
+                  opacity: 1; /* Firefox */
+                }
+
+                #proof_of_address::-ms-input-placeholder { /* Edge 12 -18 */
+                  color: red;
+                }
+            {% endif %}
+
+            {% if "Citizenship" in err: %}
+                #citizenship {
+                  color: red;
+                  border-color: red;
+                }
+
+                #citizenship::placeholder {
+                  color: red;
+                  opacity: 1; /* Firefox */
+                }
+
+                #citizenship::-ms-input-placeholder { /* Edge 12 -18 */
+                  color: red;
+                }
+            {% endif %}
+
+            {% if "Province" in err: %}
+                #province {
+                  color: red;
+                  border-color: red;
+                }
+
+                #province::placeholder {
+                  color: red;
+                  opacity: 1; /* Firefox */
+                }
+
+                #province::-ms-input-placeholder { /* Edge 12 -18 */
+                  color: red;
+                }
+            {% endif %}
+
+            {% if "Language" in err: %}
+                #language {
+                  color: red;
+                  border-color: red;
+                }
+
+                #language::placeholder {
+                  color: red;
+                  opacity: 1; /* Firefox */
+                }
+
+                #language::-ms-input-placeholder { /* Edge 12 -18 */
+                  color: red;
+                }
+            {% endif %}
+
+            {% if "Political" in err: %}
+                #political_party_affiliation {
+                  color: red;
+                  border-color: red;
+                }
+
+                #political_party_affiliation::placeholder {
+                  color: red;
+                  opacity: 1; /* Firefox */
+                }
+
+                #political_party_affiliation::-ms-input-placeholder { /* Edge 12 -18 */
+                  color: red;
+                }
+            {% endif %}
+
+        </style>
+    </head>
+    <body>
+	{% include "navigation-bar.html" %}
+        <h1 class="main-h c-white">Registration Form</h1>
+        <div class="form-div flex j-center">
+            <form method="POST">
+                <div class="form-category">
+                    <button class="cate-but w-100 1st-but">Personal Information</button>
+                    {% if "ID" in err or "First" in err or "Last" in err or "Date" in err or "Young" in err or "Invalid*Address!!!" == err or "Contact" in err: %}
+                        <h2 style="color: red; text-align: center; font-size: 25px;">{{ err.replace("*", " ") }}</h2>
+                    {% endif %}
+                    <div class="info flex">
+                        <input class="bg-transparent w-50 c-white" type="text" name="name" id="name" placeholder="First Name" required>
+                        <input class="bg-transparent w-50 c-white" type="text" name="surname" id="surname" placeholder="Last Name" required>
+                    </div>
+                    <div class="info flex fbg-transparent">
+                        <input class="bg-transparent w-50 c-white" type="text" name="id_number" id="id_number" placeholder="ID Number" minlength="13" maxlength="13" title="Please enter 13 numbers." required>
+                        <input class="bg-transparent w-50 c-white" type="date" name="date" id="date" required>
+                    </div>
+                    <div class="info flex fbg-transparent">
+                        <input class="bg-transparent w-50 c-white" type="text" name="address" id="address" placeholder="Address" required>
+                        <input class="bg-transparent w-50 c-white" type="text" name="contact_numbers" id="contact_numbers" placeholder="Contact Number" minlength="10" maxlength="12" required>
+                    </div>
+                </div>
+                <div class="form-category">
+                    <button class="cate-but w-100">Verification and Eligibility</button>
+                    {% if "Proof" in err or "Citizenship" in err or "Province" in err: %}
+                        <h2 style="color: red; text-align: center; font-size: 25px;">{{ err.replace("*", " ") }}</h2>
+                    {% endif %}
+                    <div class="info flex">
+                        <input class="w-50 c-white bg-transparent" type="text" name="proof_of_address" id="proof_of_address" placeholder="Proof of Address" required>
+                        <select class="c-white bg-transparent" name="citizenship" id="citizenship" required>
+                            <option value="none">Citizenship</option>
+                            {% for tup in country_dict: %}
+                                <option value="{{ tup[0] }}">
+                                    {{ tup[1] }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="info flex">
+                        <select class="c-white bg-transparent" name="province" id="province" required>
+                           <option value="none">Province</option>
+                            {% for province in provinces: %}
+                                <option value="{{ province }}">
+                                    {{ province }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-category">
+                    <button class="cate-but w-100">Additional Information</button>
+                    {% if "Language" in err or "Political" in err: %}
+                        <h2 style="color: red; text-align: center; font-size: 25px;">{{ err.replace("*", " ") }}</h2>
+                    {% endif %}
+                    <div class="info flex">
+                        <select class="c-white bg-transparent" name="language" id="language">
+                            <option value="none">Language</option>
+                            {% for language in languages: %}
+                                <option value="{{ language }}">
+                                    {{ language }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <select class="w-50 c-white bg-transparent" name="political_party_affiliation" id="political_party_affiliation">
+                            <option value="none">Political Party Affiliation</option>
+                            {% for political_party in political_parties: %}
+                                <option value="{{ political_party }}">
+                                    {{ political_party }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="info flex">
+                        <div class="radio-fields-div">
+                            <label class="g-lab">Are you disabled?</label>
+                            <div class="radio-fields flex">
+                                <div class="radio-field">
+                                    <input class="radio-field" type="radio" name="disabled" id="disabled" value="disabled" required>
+                                    <label for="disabled">Yes</label>
+                                </div>
+                                <div class="radio-field">
+                                    <input class="radio-field" type="radio" name="disabled" id="not-disabled" value="not-disabled" required>
+                                    <label for="not-disabled">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-category">
+                    <button class="cate-but w-100">Optional Information </button>
+                    <div class="info flex j-space-bet">
+                        <div class="radio-fields-div">
+                            <label class="g-lab">What is your gender?</label>
+                            <div class="radio-fields flex">
+                                <div class="radio-field">
+                                    <input class="radio-field" type="radio" name="gender" id="male" value="male">
+                                    <label name="male" for="male">Male</label>
+                                </div>
+                                <div class="radio-field">
+                                    <input class="radio-field" type="radio" name="gender" id="female" value="female">
+                                    <label name="female" for="female">Female</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="radio-fields-div">
+                            <label class="g-lab">Are you married?</label>
+                            <div class="radio-fields flex">
+                                <div class="radio-field">
+                                    <input class="radio-field" type="radio" name="marital-status" id="married" value="married">
+                                    <label name="married" for="married">Yes</label>
+                                </div>
+                                <div class="radio-field">
+                                    <input class="radio-field" type="radio" name="marital-status" id="not-married" value="not-married">
+                                    <label name="married" for="not-married">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" id="submit" class="c-white">Submit</button>
+            </form>
+        </div>
+    </body>
+</html>

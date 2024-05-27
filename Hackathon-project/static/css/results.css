@@ -1,0 +1,48 @@
+body {
+  font-family: "Roboto", serif;
+  margin: 0;
+}
+
+header {
+  margin-bottom: 20px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  padding: 0 50px;
+}
+
+h1:not(header h1) {
+  font-size: 45px;
+  margin-top: 5px;
+}
+
+h1 span {
+  color: #FF0080;
+}
+
+.header-border {
+  width: 100px;
+  height: 4px;
+  background-color: #FF0080;
+  border-radius: 20px;
+}
+
+.flex {
+  display: flex;
+}
+
+.pie-chart-stats{
+  flex-wrap: wrap;
+  margin-top: 80px;
+}
+
+.pie-chart {
+  width: 450px;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+
+        <!-- My Stylesheet -->
+        <link rel="stylesheet" href="../static/css/results.css">
+
+        <!-- Google Fonts Merriweather-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <!-- Google Fonts Roboto -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+	{% include "navigation-bar.html" %}
+        <main>
+            <div class="header">
+                <div class="header-border"></div>
+                <h1 class="main-h">
+                    Voting <span>Results</span>
+                </h1>
+            </div>
+            <img class="bar-chart" src="../static/images/bar_chart.jpeg">
+
+            <div class="pie-chart-stats flex">
+                {% for num in range(10): %}
+                    {% if "0.0" not in stats_des[num]: %}
+                        <div class="stat-div flex">
+                            <img class="pie-chart" src="../static/images/{{ pie_charts[num] }}_pie_chart.jpeg">
+                            <div class="stat-h-des">
+                                <h2 class="stat-h" style="color: {{ colors[num] }}">{{ parties[num] }}</h2>
+                                <p class="stats-des">{{ stats_des[num] }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+
+        <!-- My Stylesheet -->
+        <link rel="stylesheet" href="../static/css/sign-up.css">
+
+        <!-- Google Fonts Merriweather-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <!-- Google Fonts Roboto -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+        <!-- Fontawesome kit -->
+        <script src="https://kit.fontawesome.com/4b92c18dda.js" crossorigin="anonymous"></script>
+
+        <style>
+            {% if "Email" in err or "Password" in err or "ID" in err : %}
+               .main-div {
+                   padding: 25px 80px 115px;
+               }
+            {% endif %}
+
+            {% if "Email" in err: %}
+               label[for="email"] {
+                   color: rgb(255, 0, 0);
+               }
+
+               #email {
+                 border: 2px solid rgb(255, 0, 0);
+                 height: 34px;
+               }
+
+            {% elif "Password" in err: %}
+               label[for="password"] {
+                   color: rgb(255, 0, 0);
+               }
+
+               #password {
+                 border: 2px solid rgb(255, 0, 0);
+                 height: 34px;
+               }
+
+            {% elif "ID" in err: %}
+               .id_number-lab {
+                   color: rgb(255, 0, 0);
+               }
+
+               #id_number {
+                 border: 2px solid rgb(255, 0, 0);
+                 height: 34px;
+               }
+
+            {% elif "First" in err: %}
+               label[for="name"] {
+                   color: rgb(255, 0, 0);
+               }
+
+               #name {
+                 border: 2px solid rgb(255, 0, 0);
+                 height: 34px;
+               }
+
+            {% elif "Last" in err: %}
+               label[for="surname"] {
+                   color: rgb(255, 0, 0);
+               }
+
+               #surname {
+                 border: 2px solid rgb(255, 0, 0);
+                 height: 34px;
+               }
+            {% endif %}
+        </style>
+    </head>
+
+    <body>
+        <div class="main-div c-white">
+            {% if "Email" in err or "Password" in err or "First" in err or "Last" in err or "ID" in err: %}
+                <h2 style="color: rgb(255, 0, 0); text-align: center; font-size: 25px; margin: 0">{{ err.replace("*", " ") }}</h2>
+            {% endif %}
+            <div class="image-div">
+		<a href="{{ url_for('home') }}">
+                	<img src="https://cdn-icons-png.flaticon.com/512/5931/5931366.png" class="logo">
+		</a>
+            </div>
+            <div class="text-form flex j-center">
+                <div class="text">
+                    <h1 class="main-h">Welcome!</h1>
+                    <hr>
+                    <p class="main-p">
+                        Join our vibrant community and make your voice heard! Sign up now to vote on important issues, participate in engaging surveys, and connect with like-minded members. Share your opinions, contribute to meaningful discussions, and be part of a supportive and active network. Your insights and feedback are invaluable to us, and we can't wait to hear from you. Sign up today and start making a difference!
+                    </p>
+                    <a href="#" class="main-a">
+                        <button class="main-but c-white b-color">Learn More</button>
+                    </a>
+                    <p class="alt-text">
+                        If you already have an account, please
+                        <a class="sign-in-a" href="{{ url_for('sign_in', err='noerror') }}">Sign In</a>
+                    </p>
+                </div>
+                <div class="form-div">
+                    <h2 class="form-h c-white">
+                        Sign
+                        <span>up</span>
+                    </h2>
+                    <form method="POST">
+                        <div class="form-group">
+                            <label for="name" class="c-white">First Name</label>
+                            <input class="field block h-36 b-none b-rad-20" type="text" name="name" id="name" placeholder="First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="surname" class="c-white">Last Name</label>
+                            <input class="field block h-36 b-none b-rad-20" type="text" name="surname" id="surname" placeholder="Last Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_number" class="c-white id_number-lab">ID Number</label>
+                            <input class="field block h-36 b-none b-rad-20" type="text" name="id_number" id="id_number" placeholder="ID Number" minlength="13" maxlength="13" title="Please enter 13 numbers." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="c-white">Email</label>
+                            <input class="field block h-36 b-none b-rad-20" type="email" name="email" id="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="c-white">Password</label>
+                            <input class="field block h-36 b-none b-rad-20" type="password" name="password" id="password" placeholder="Password" minlength="7" maxlength="7" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="checkbox" type="checkbox" name="ts_and_cs" id="ts_and_cs" required>
+                            <label class="c-white" for="ts_and_cs">I agree to the <a href="#" target="_blank">Terms and Conditions</a></label>
+                        </div>
+                        <button class="h-36 b-none c-white b-color b-rad-20" id="submit" type="submit">Submit</button>
+                        <div class="socials flex j-center">
+                            <i class="fa-brands fa-facebook-f c-white"></i>
+                            <i class="fa-brands fa-instagram c-white"></i>
+                            <i class="fa-brands fa-pinterest-p c-white"></i>
+                        </div>
+                    </form>
+                    <p class="alt-form">
+                        If you have an account,
+                        <a class="sign-in-a" href="{{ url_for('sign_in', err='noerror') }}">Sign In</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

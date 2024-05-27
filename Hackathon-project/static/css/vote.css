@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  padding-bottom: 40px;
+}
+
+header {
+  margin-bottom: 60px;
+}
+
+img {
+  width: 150px;
+  height: 150px;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 120px 20px;
+  padding: 0 30px;
+}
+
+.form-group {
+  width: 400px;
+  height: 380px;
+  text-align: center;
+  background-color: white;
+  border-radius: 5px;
+}
+
+body {
+  background-color: #DDDDDD;
+}
+
+body, button {
+  font-family: "Roboto", serif;
+}
+
+p {
+  color: gray;
+}
+
+.top-color {
+  height: 8px;
+  margin-bottom: 35px;
+}
+
+.top-color {
+  border-radius: 5px 5px 0 0;
+}
+
+button {
+    color: white;
+    border: none;
+    width: 130px;
+    height: 35px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+

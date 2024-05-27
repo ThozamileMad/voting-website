@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header style="
+            background-color: white;
+            color: black;
+            padding: 5px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 400;
+            font-family: 'Poetsen One', sans-serif;
+            font-weight: 400;
+            font-style: normal;
+	    ">
+            <div class="mv" style="display: flex; align-items: center;">
+            <div>
+		<a href="{{ url_for("home") }}" style="text-decoration: none; color: black">
+			<img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTId6bHPmuzEyXaQdNY7cjE2C9-uI94J4IV7B3SIWfzLw&s" alt="" style="height: 100px;
+            width: 100px;
+            border-radius: 100%;"></div>
+                	<h1 style="padding-bottom: 10px;">Vote.org</h1>
+		</a>
+            </div>
+
+            <nav class="top_nav" >
+		{% if is_logged_in: %}
+                <a href="{{ url_for('register', err='noerror') }}" style="
+                text-decoration: none;
+                color: black;
+                padding: 10px 20px;
+                font-size: 18px;
+                transition: color 0.3s;">Register</a>
+		{% endif %}
+		{% if not is_logged_in: %}
+                <a href="{{ url_for('sign_in', err='noerror') }}" style="
+                text-decoration: none;
+                color: black;
+                padding: 10px 20px;
+                font-size: 18px;
+                transition: color 0.3s;">Sign In</a>
+		{% else: %}
+                <a href="{{ url_for('logout') }}" style="
+                text-decoration: none;
+                color: black;
+                padding: 10px 20px;
+                font-size: 18px;
+                transition: color 0.3s;">Logout</a>
+		{% endif %}
+                <a href="current-elections.html" style="
+                text-decoration: none;
+                color: black;
+                padding: 10px 20px;
+                font-size: 18px;
+                transition: color 0.3s;">Current Elections</a>
+                <a href="{{ url_for('faq') }}" style="
+                text-decoration: none;
+                color: black;
+                padding: 10px 20px;
+                font-size: 18px;
+                transition: color 0.3s;">FAQ</a>
+		{% if is_logged_in: %}
+                <a href="{{ url_for('vote') }}" style="
+                text-decoration: none;
+                color: black;
+                padding: 10px 20px;
+                font-size: 18px;
+                transition: color 0.3s;">Candidates</a>
+		{% endif %}
+                <a href="{{ url_for('results') }}" style="
+                text-decoration: none;
+                color: black;
+                padding: 10px 20px;
+                font-size: 18px;
+                transition: color 0.3s;">Results</a>
+                <a href="{{ url_for('contact') }}" style="
+                text-decoration: none;
+                color: black;
+                padding: 10px 20px;
+                font-size: 18px;
+                transition: color 0.3s;">Contact</a>
+            </nav>
+        </header>
+    </body>
+</html>

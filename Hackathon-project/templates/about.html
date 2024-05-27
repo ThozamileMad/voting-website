@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Website - Home</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+        .top_nav a{
+            text-decoration: none;
+            color: black;
+            padding: 10px 20px;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        header {
+            background-color: ;        
+            color: black;
+            padding: 5px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 400;
+            font-family: "Poetsen One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            
+        }
+        .top_nav a:hover{
+            color: #611208;
+        }
+        .logo{
+            height: 100px;
+            width: 100px;
+            border-radius: 100%;
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        section {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .htv{
+            width: 800px;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .rnv{
+            width: 100%;
+            height: auto;
+        }
+        .footer {
+            background-color: #333;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            bottom: 0;
+            width: 100%;
+            height: 80px;
+        }
+        .footer a {
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s;
+        }
+        .footer a:hover {
+            color: #f4a261;
+        }
+        .mv{
+            display: flex;
+        }
+        ul{
+            text-align: left;
+        }
+        .pp{
+            text-align: left;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+        video{
+            height: ;
+        }
+    </style>
+    <style>
+        /*  Rollover image styles  */
+        .figure {
+          position: relative;
+          width: 360px; /* can be omitted for a regular non-lazy image */
+          max-width: 100%;
+        }
+        .figure img.Sirv.image-hover {
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          object-fit: contain;
+          opacity: 0;
+          border-radius: 50%;
+
+          transition: opacity .4s;
+        }
+        .figure:hover img.Sirv.image-hover {
+          opacity: 1;
+        }
+
+      </style>
+</head>
+<body>
+    <header>
+        <div class="mv">     
+            <div><img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTId6bHPmuzEyXaQdNY7cjE2C9-uI94J4IV7B3SIWfzLw&s" alt=""></div>
+            <h1>Vote.org</h1>
+        </div>       
+
+        <nav class="top_nav">
+            <a href="{{ url_for('register', err='noerror') }}">Register</a>
+            <a href="{{ url_for('sign_in', err'noerror) }}">Login</a>
+            <a href="current-elections.html">Current Elections</a>
+            <a href="news.html">News</a>
+            <a href="faq.html">FAQ</a>
+            <a href="candidates.html">Candidates</a>
+            <a href="results.html">Results</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        
+        <section>
+            <div class="htv grid-container">
+                <div>
+                    <h2>How to Register and Vote</h2>
+                    <ul>
+                        <li>Follow these simple steps to cast your vote...</li>
+                    </ul>
+                </div>
+                <div>
+                    <img class="rnv" src="https://electionbuddy.com/wp-content/uploads/2021/02/home-cover.jpg" alt="">
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="htv grid-container" style=" box-shadow:50px 0px 0px 0px #fff; background-image: linear-gradient(to right, lightblue,white , white);">
+                <div>
+                    <h2>News and updates</h2>
+                    <ul>
+                        <li><strong>June 1, 2024:</strong> Voter registration deadline for the upcoming state elections.</li>
+                        <li><strong>July 15, 2024:</strong> Early voting begins.</li>
+                        <li><strong>August 1, 2024:</strong> Election day - cast your vote in person or online.</li>
+                    </ul>
+                    <p class="pp">Visit our <a href="news.html">News</a> page for more updates.</p>
+
+                </div>
+                <div>
+                    <img class="rnv" src="https://t3.ftcdn.net/jpg/04/95/53/70/360_F_495537031_cXCpPTxk6Z3oNPVfg19ODgkHTWP1SQEC.jpg" alt="">
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="htv grid-container" style=" box-shadow:0px 0px 50px 0px #FCB24D; background-image: linear-gradient(#FCB24D, #FC7675);">
+                 <div>
+                    <img class="rnv" src="../static/images/vote.png" alt="">
+                </div>
+                <div>
+                    <h2>Frequently Asked Questions</h2>
+                    <ul><li><p>Find answers to common questions about voting, registration, and more...</p></li></ul>
+                </div>
+           
+            </div>
+        </section>
+        <section>
+            <div>
+                <div class="htv" style="display: flex;">
+                    <div>
+                        <h2>Candidate Information</h2>
+                        <ul><li><p class="pp">Learn more about the candidates running in the current elections...</p></li></ul>          
+                    </div>
+
+                    <script src="https://scripts.sirv.com/sirvjs/v3/sirv.js"></script>
+                    <div class="figure">
+                      <img class="Sirv image-main" src="../static/images/anc_logo.jpg" data-src="anc_logo.jpg">
+                      <img class="Sirv image-hover" data-src="https://www.anc1912.org.za/wp-content/uploads/2024/04/ANC-President.png">
+                    </div>
+                    <div class="figure">
+                        <img class="Sirv image-main" src="https://eff-online-store.myshopify.com/cdn/shop/t/3/assets/logo.png?v=118372393875053857661463132124" data-src="https://eff-online-store.myshopify.com/cdn/shop/t/3/assets/logo.png?v=118372393875053857661463132124">
+                        <img class="Sirv image-hover" data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCuvHg1V0AclMwfBGacLmKPmdfxMX5YP9ldEqlF3x_4g&s">
+                      </div>
+                      <div class="figure">
+                        <img class="Sirv image-main" src="https://scontent-jnb2-1.xx.fbcdn.net/v/t39.30808-6/271758279_231545519163741_6244929468069883550_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHaTMrxQXOOW8wtKX5Arwed0JV11_4Gy0fQlXXX_gbLR3P-K_iI4NXluCAax2LSevLf6GtBmCC9q3J-FCWd9MEV&_nc_ohc=TIBp5KwSOSoQ7kNvgEbs8YC&_nc_ht=scontent-jnb2-1.xx&oh=00_AYAkO7ioWx2Fuhib_6DjbuMZlbWoUMuO_DVnevi1BWJxDQ&oe=664AF7D4" data-src="https://scontent-jnb2-1.xx.fbcdn.net/v/t39.30808-6/271758279_231545519163741_6244929468069883550_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHaTMrxQXOOW8wtKX5Arwed0JV11_4Gy0fQlXXX_gbLR3P-K_iI4NXluCAax2LSevLf6GtBmCC9q3J-FCWd9MEV&_nc_ohc=TIBp5KwSOSoQ7kNvgEbs8YC&_nc_ht=scontent-jnb2-1.xx&oh=00_AYAkO7ioWx2Fuhib_6DjbuMZlbWoUMuO_DVnevi1BWJxDQ&oe=664AF7D4">
+                        <img class="Sirv image-hover" data-src="data:image/jpeg;base64,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">
+                      </div>
+                </div>
+            </div>
+        </section>
+        <section style="width: 100%;">
+            <div style="background-color: black;display: flex; ;">
+                <div class = "grid-container">
+                   <center></center><video style="height: 300px;" src="../static/videos/Blender bar graph animation.mp4" alt="" autoplay loop muted >
+                </div>
+                <div class = "htv" style="background-color: black; color: white; text-align: left;">
+                    <h2>Election Results</h2>
+                    <p style="color: white;">View the results of recent elections and historical data... </p>
+                </div>
+                              
+            </div>
+            <div> 
+
+            </div>
+            
+                <section style="width: 100%;">
+                    <div class = "footer" style="background-color: black;display: flex; ;">
+                                               
+                        <a href="privacy.html">Privacy Policy</a>
+                            <a href="terms.html">Terms of Service</a>
+                            <a href="contact.html">Contact Us</a>
+                            <a href="accessibility.html">Accessibility</a>
+                        </div>               
+                    <div> 
+        
+                    </div>
+                    <section>
+
+    </main>
+</body>
+</html>

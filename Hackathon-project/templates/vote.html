@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- My Stylesheet -->
+    <link rel="stylesheet" href="../static/css/vote.css">
+
+    <!-- Google Fonts Merriweather-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!-- Fontawesome kit -->
+    <script src="https://kit.fontawesome.com/4b92c18dda.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    {% include "navigation-bar.html" %}
+    <form method="POST" class="flex">
+        {% for num in range(9): %}
+            <div class="form-group">
+                <div class="top-color" style="background-color: {{ party_colors[num] }}"></div>
+                <div class="center-div">
+                    <img src="../static/images/{{ party_img_path[num] }}" alt="political_party">
+                </div>
+                <h2 class="parth-h" style="color: {{ party_colors[num] }}">{{ party_names[num].title().split('(')[0] }}</h2>
+                <p class="party-description">{{ party_descriptions[num] }}</p>
+                <button id="{{ party_names[num] }}" name="{{ party_names[num] }}" value="{{ party_names[num] }}" style="background-color: {{ party_colors[num] }};">Vote {{ party_names[num].split()[-1].replace("(", "").replace(")", "").upper() }}</button>
+            </div>
+        {% endfor %}
+    </form>
+  </body>
+</html>
