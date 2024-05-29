@@ -46,8 +46,15 @@ class ErrorHandler:
     def detect_invalid_date(self, user_input):
         birth_date_lst = [int(data) for data in user_input.split("-")]
         current_date_lst = [int(data) for data in str(self.current_date).split("-")]
-        if current_date_lst[0] - birth_date_lst[0] < 16:
+        if current_date_lst[0] - birth_date_lst[0] < 18:
             return True
         if self.detect_invalid_month_day(birth_date_lst[1], birth_date_lst[2]):
+            return True
+
+    def detect_id_date_match(self, id_no, dob):
+        id_number_date = id_no[:6]
+        date_of_birth = "".join(dob.split("-"))[2:]
+
+        if id_number_date != date_of_birth:
             return True
 
