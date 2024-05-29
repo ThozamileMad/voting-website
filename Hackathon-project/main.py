@@ -103,6 +103,10 @@ def register(err):
         if err_han.detect_if_id_number_exists(id_numbers, id_number):
             return redirect(url_for("register", err="ID*Number*is*already*in*database!!!"))
 
+       if err_han.detect_id_date_match(id_number, date):
+            return redirect(url_for("register", err="ID*Date*Of*Birth*Does*Not*Match*Date*Of*Birth*Provided!!!"))
+
+
         # checks if user meets the minimum age requirements - 16 yrs
         if err_han.detect_invalid_date(date):
             return redirect(url_for("register", err="You*Are*Too*Young!!!"))
